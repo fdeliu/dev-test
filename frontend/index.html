@@ -34,21 +34,33 @@
       <div id="my-list">
         <div class="list d-flex"></div>
       </div>
+      <hr />
+      <h2 class="my-3">Fetch data from api</h2>
+      <button class="btn btn-primary btn-medium btn-lg" onclick="fetchData()">
+        Fetch Data
+      </button>
     </div>
 
     <script src="customContainer.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/list.js/2.3.0/list.min.js"></script>
     <script>
+      function fetchData() {
+        fetch("http://localhost:5000/data")
+          .then((response) => response.json())
+          .then((json) => console.log(json))
+          .catch((err) => console.log("Request Failed", err));
+      }
+
       var options = {
         valueNames: ["name", "email", "phone"],
         item: `<div class="list-group-item mx-3">
                  <label class="text-success">Name:</label>
-                <p class="name"></p>
-                <label class="text-success">Email:</label>
-                <p class="email"></p>
-                <label class="text-success">Phone number:</label>
-                <p class="phone"></p>
-              </div>`
+                  <p class="name"></p>
+                  <label class="text-success">Email:</label>
+                  <p class="email"></p>
+                  <label class="text-success">Phone number:</label>
+                  <p class="phone"></p>
+               </div>`
       };
 
       const values = [
