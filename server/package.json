@@ -1,0 +1,22 @@
+{
+  "name": "dev-test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node dist/server.js",
+    "dev": "nodemon src/server.ts",
+    "build": "tsc -p"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fdeliu/dev-test.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fdeliu/dev-test/issues"
+  },
+  "homepage": "https://github.com/fdeliu/dev-test#readme"
+}
