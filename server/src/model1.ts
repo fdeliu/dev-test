@@ -11,7 +11,7 @@ new Promise((resolve, reject) => {
   console.log("Trying to add data into db.....");
 
   db.run(
-    'INSERT into table1(name, email,phone) values ("flamur deliu","test@gmail.com","0123456789")',
+    'INSERT into table2(name, email,phone) values ("flamur deliu","test@gmail.com","0123456789")',
     (err) => {
       if (err) {
         reject(err);
