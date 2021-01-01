@@ -20,30 +20,60 @@
   </head>
   <body>
     <div class="container">
-      <custom-container
-        title="Company Name"
-        description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae velit
-      quisquam eligendi, rem voluptatibus porro consequatur, nostrum quibusdam
-      et vero modi odio ab tenetur vel, iure vitae perspiciat"
-        backgroundColor="black"
-        color="white"
-      >
-      </custom-container>
-
-      <h2 class="my-3">List preview with listjs</h2>
+      <h2 class="my-1">Toggle the two web components</h2>
+      <div class="row" style="height: 500px">
+        <div class="col-md-3 d-flex flex-column justify-content-center">
+          <button class="btn btn-primary mb-3" onclick="showContainer()">
+            Show Container
+          </button>
+          <button class="btn btn-primary" onclick="showLineChart()">
+            Show Line Chart
+          </button>
+        </div>
+        <div class="col-md-9 my-auto">
+          <custom-container
+            id="my-container"
+            title="Company Name"
+            description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae velit
+          quisquam eligendi, rem voluptatibus porro consequatur, nostrum quibusdam
+          et vero modi odio ab tenetur vel, iure vitae perspiciat"
+            backgroundColor="black"
+            color="white"
+          >
+          </custom-container>
+          <line-chart id="my-chart" style="display: none"></line-chart>
+        </div>
+      </div>
+      <hr />
+      <h2 class="my-4">List preview with listjs</h2>
       <div id="my-list">
         <div class="list d-flex"></div>
       </div>
       <hr />
       <h2 class="my-3">Fetch data from api</h2>
-      <button class="btn btn-primary btn-medium btn-lg" onclick="fetchData()">
+      <button
+        class="btn btn-primary btn-medium btn-lg mb-3"
+        onclick="fetchData()"
+      >
         Fetch Data
       </button>
     </div>
 
     <script src="customContainer.js"></script>
+    <script src="lineChart.js"></script>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/list.js/2.3.0/list.min.js"></script>
     <script>
+      function showContainer() {
+        document.getElementById("my-container").style.display = "block";
+        document.getElementById("my-chart").style.display = "none";
+      }
+
+      function showLineChart() {
+        document.getElementById("my-container").style.display = "none";
+        document.getElementById("my-chart").style.display = "block";
+      }
+
       function fetchData() {
         fetch("http://localhost:5000/data")
           .then((response) => response.json())
@@ -54,13 +84,13 @@
       var options = {
         valueNames: ["name", "email", "phone"],
         item: `<div class="list-group-item mx-3">
-                 <label class="text-success">Name:</label>
-                  <p class="name"></p>
-                  <label class="text-success">Email:</label>
-                  <p class="email"></p>
-                  <label class="text-success">Phone number:</label>
-                  <p class="phone"></p>
-               </div>`
+                <label class="text-success">Name:</label>
+                <p class="name"></p>
+                <label class="text-success">Email:</label>
+                <p class="email"></p>
+                <label class="text-success">Phone number:</label>
+                <p class="phone"></p>
+              </div>`
       };
 
       const values = [
