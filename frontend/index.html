@@ -4,6 +4,18 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dev Test</title>
+    <script
+      type="text/javascript"
+      src="https://npmcdn.com/parse/dist/parse.min.js"
+    ></script>
+    <script type="text/javascript" type="text/javascript">
+      Parse.initialize(
+        "0DJNqrzoObDuvlc1xUWkMd4UPXo5MID8P3KnAeYj",
+        "c4ty2RfUgvGPyREAjYc2ga8yxpMLrxubW2W2LQDn"
+      );
+      Parse.serverURL = "https://parseapi.back4app.com/";
+    </script>
+
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -44,6 +56,7 @@
           <line-chart id="my-chart" style="display: none"></line-chart>
         </div>
       </div>
+
       <hr />
       <h2 class="my-4">List preview with listjs</h2>
       <div id="my-list">
@@ -56,6 +69,11 @@
         onclick="fetchData()"
       >
         Fetch Data
+      </button>
+      <hr />
+      <h2 class="my-4">Connect to Back4App</h2>
+      <button class="btn btn-info my-2 text-white" onclick="testBack4App()">
+        Test Back 4 App
       </button>
     </div>
 
@@ -79,6 +97,25 @@
           .then((response) => response.json())
           .then((json) => console.log(json))
           .catch((err) => console.log("Request Failed", err));
+      }
+
+      function testBack4App() {
+        const MyFirstClass = Parse.Object.extend("MyFirstClass");
+        const myFirstClass = new MyFirstClass();
+
+        myFirstClass.set("name", "Hello World!");
+        myFirstClass.save().then(
+          (object) => {
+            // Success
+            alert("New object created with objectId: " + object.id);
+          },
+          (error) => {
+            // Save fails
+            alert(
+              "Failed to create new object, with error code: " + error.message
+            );
+          }
+        );
       }
 
       var options = {
